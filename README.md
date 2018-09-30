@@ -1,5 +1,9 @@
-READ ME
+# Testing
 
-THIS IS JUST A TEST
+Code Name: T E S T I N G
 
-REPEAT: THIS IS JUST A TEST
+___________________________________________________________________________________________________________________________________________
+
+I Legit Have No Idea How To Use GitHub So Here I Am To Find Out
+
+It Should Be Free Money Maybe
