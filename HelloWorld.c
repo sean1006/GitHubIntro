@@ -3,10 +3,6 @@
 int main()
 {
   printf("Hello World!\n");
-<<<<<<< HEAD:HelloWorld.c
-  printf("This was made in the branch... \n");
-=======
-  printf("Master Branch Version, CONFLICTION?!\n");
->>>>>>> master:helloWorld.c
+  printf("The Conflict Was Resolved!\n");
   return 0;
 }
