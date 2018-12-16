@@ -4,6 +4,7 @@ from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
 
+
 def simple_get(url):
     """
     Attempts to get the content at `url` by making an HTTP GET request.
@@ -41,30 +42,38 @@ def log_error(e):
     print(e)
 
 def main():
-    website = "http://na.op.gg/summoner/champions/userName=mafi4rmy"
-    html_raw = simple_get(website)
+    website = "http://na.op.gg/summoner/champions/userName="
+    user = raw_input()
+    html_raw = simple_get(website+user)
     html = BeautifulSoup(html_raw, 'html.parser')
-    f = open("kevostat.txt","w+")
-    #f.write(html_raw)
+    #f = open("kevostat.txt","w+")
     winRate = html.findAll("div", {"class": "WinRatioGraph"})
     champName = html.findAll("td", {"class": "ChampionName Cell"})
     i = 0
-    #print(len(winRate))
-    #print(len(champName))
     while i < len(winRate) and i < len(champName):
-        print(str(champName[i]).split("\"")[3] + ": ", end='')
         j = str(winRate[i]).find("%") - 3
-        #print(j)
-        #print(len(winRate))
+        l = str(winRate[i]).find("L<") - 4
+        w = str(winRate[i]).find("W<") - 4
+        Lose = 0
+        Win = 0
+        if l > 0:
+            while str(winRate[i])[l] is not "L":
+                if str(winRate[i])[l].isdigit():
+                    Lose = Lose * 10 + int(str(winRate[i])[l])
+                l+=1
+        if w > 0:
+            while str(winRate[i])[w] is not "W":
+                if str(winRate[i])[w].isdigit():
+                    Win = Win * 10 + int(str(winRate[i])[w])
+                w+=1
+        print(str(champName[i]).split("\"")[3] + " (" + str(Win + Lose) + "): ", end='')
         while str(winRate[i])[j] is not "%":
             if str(winRate[i])[j].isdigit():
                 print(str(winRate[i])[j], end='')
             j+=1
         print("%")
-        #print(j)
-        #print(str(winRate[i])[j-3:j+1])
         i += 1
-    f.close()
+    #f.close()
 
 if __name__ == '__main__':
     main()
