@@ -14,3 +14,4 @@ Topics Covered:
 
 -Status: Checking differences and resolving conflicts in code
 
+-Python: Virtualenv, Exporting dependencies, Input, Scraping HTML
