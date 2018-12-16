@@ -1,3 +1,4 @@
+from __future__ import print_function
 from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
@@ -40,21 +41,29 @@ def log_error(e):
     print(e)
 
 def main():
-    website = "http://na.op.gg/summoner/userName=mafi4rmy"
+    website = "http://na.op.gg/summoner/champions/userName=mafi4rmy"
     html_raw = simple_get(website)
     html = BeautifulSoup(html_raw, 'html.parser')
     f = open("kevostat.txt","w+")
-    f.write(html_raw)
-    winRate = html.findAll("div", {"title": "Win Ratio"})
-    champName = html.findAll("div", {"class": "ChampionName"})
+    #f.write(html_raw)
+    winRate = html.findAll("div", {"class": "WinRatioGraph"})
+    champName = html.findAll("td", {"class": "ChampionName Cell"})
     i = 0
+    #print(len(winRate))
+    #print(len(champName))
     while i < len(winRate) and i < len(champName):
-        print(str(champName[i]).split()[2:4])
-        print(str(winRate[i]).split()[6])
+        print(str(champName[i]).split("\"")[3] + ": ", end='')
+        j = str(winRate[i]).find("%") - 3
+        #print(j)
+        #print(len(winRate))
+        while str(winRate[i])[j] is not "%":
+            if str(winRate[i])[j].isdigit():
+                print(str(winRate[i])[j], end='')
+            j+=1
+        print("%")
+        #print(j)
+        #print(str(winRate[i])[j-3:j+1])
         i += 1
-#    for i in divs:
-#        print(i)
-        #f.write(i)
     f.close()
 
 if __name__ == '__main__':
