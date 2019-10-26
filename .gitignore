@@ -1,3 +1,15 @@
-#Ignore
-/ProgramsC/hello_world
-/ProgramsC/roll_dice
+# Ignore
+
+# C Files
+/C/hello_world
+/C/roll_dice
+
+# Python Files
+
+# hello_world venv
+/Python/hello_world/bin
+/Python/hello_world/include
+/Python/hello_world/lib
+/Python/hello_world/lib64
+/Python/hello_world/pyvenv.cfg
+/Python/hello_world/share
