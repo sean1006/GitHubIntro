@@ -3,8 +3,8 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [HelloWorldC](#helloworldc)
-* [Result](#result)
+* [C](#c)
+* [Python](#python)
 * [Sources](#sources)
 
 
